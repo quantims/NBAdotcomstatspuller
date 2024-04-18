@@ -33,10 +33,10 @@ urls = [
 # Create an empty DataFrame to store the final result
 final_def = pd.DataFrame()
 
-# Create a new Chrome WebDriver instance
+# Create a new Chrome WebDriver instance. Make sure you set this up!!
 driver = webdriver.Chrome()
 
-# Iterate through each season
+# Iterate through each season. Currently just set to one season
 for year in range(2023, 2024):
     season_year = f"{year}-{str(year + 1)[2:]}"
     
@@ -83,7 +83,7 @@ for year in range(2023, 2024):
         # Merge the DataFrame with the current season DataFrame based on column indices
         season_df = pd.concat([season_df, df], axis=1)
 
-        # Add a delay of 2 seconds before the next request
+        # Add a delay of 2 seconds before the next request to avoid errors
         time.sleep(2)
 
     # Reset column indices to numbers for the current season DataFrame
@@ -145,7 +145,7 @@ if optimal_clusters is None:
 else:
     print(f"Optimal number of clusters: {optimal_clusters}")
 
-    # Apply K-means with the optimal number of clusters
+    # Apply K-means with the selected number of clusters. Can use optimal_clusters
     kmeans_optimal = KMeans(n_clusters=7, init='k-means++', max_iter=300, n_init=10, random_state=42)
     y_kmeans = kmeans_optimal.fit_predict(X_scaled)
 
@@ -163,8 +163,6 @@ else:
 
     # Show the first few rows of the dataframe with the cluster assignments
     print(final_def.head())
-    
+
+#Export to an Excel File 
 final_def.to_excel("23-24 NBA Defenses kmeans.xlsx")
-
-
-

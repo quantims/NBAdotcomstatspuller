@@ -17,7 +17,7 @@ final_df = pd.DataFrame()
 # Create a new Chrome WebDriver instance. Make sure you have this set up!!
 driver = webdriver.Chrome()
 
-# Iterate through each season (season start year, season end year)
+# Iterate through each season (season start year, season end year). Currently set to just look at one season
 for year in range(2023, 2024):
     season_year = f"{year}-{str(year + 1)[2:]}"
     
